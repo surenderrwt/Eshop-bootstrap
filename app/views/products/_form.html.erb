@@ -1,0 +1,46 @@
+<%= form_with(model: product, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.select :category_id, @category.collect { |cat| [cat.name, cat.id] } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :count %>
+    <%= form.number_field :count %>
+  </div>
+
+  <div class="field">
+    <%= form.label :small_desc %>
+    <%= form.text_area :small_desc %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :available %>
+    <%= form.check_box :available %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
