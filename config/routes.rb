@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :cart_items
+  resources :carts
+  devise_for :users
   resources :categories
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
