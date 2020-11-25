@@ -1,5 +1,6 @@
 class CartsController < InheritedResources::Base
-
+  skip_before_action :authenticate_user!, only: [:show, :new, :create, :edit, :update]
+  before_action :is_admin?, only: [:index]
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, :with => :invalid_cart
 
@@ -11,8 +12,7 @@ class CartsController < InheritedResources::Base
 
   # GET /carts/1
   # GET /carts/1.json
-  def show
-    
+  def show 
   end
 
   # GET /carts/new

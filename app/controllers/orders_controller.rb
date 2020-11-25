@@ -1,6 +1,6 @@
 class OrdersController < InheritedResources::Base
   include CurrentCart
-  before_action :set_cart, only: [:new, :create]
+  before_action :set_cart
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   # GET /orders
@@ -28,8 +28,7 @@ class OrdersController < InheritedResources::Base
   # POST /orders
   # POST /orders.json
   def create
-    #user =User.find_by(session[:user_id])
-    @order = Order.new(order_params) 
+    @order = current_user.orders.new(order_params) 
     @order.add_cart_items_from_cart(@cart) 
     respond_to do |format|
       if @order.save
@@ -71,7 +70,7 @@ class OrdersController < InheritedResources::Base
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.find(params[:id])
+      @order = current_user.orders.find(params[:id])
     end
   
     def ensure_cart_isnt_empty
@@ -81,7 +80,7 @@ class OrdersController < InheritedResources::Base
     end
 
     def order_params
-      params.require(:order).permit(:full_name, :shipping_address, :phone)
+      params.require(:order).permit(:full_name, :shipping_address, :phone, :order_status, :user_id )
     end
 
 end

@@ -1,4 +1,6 @@
 class CategoriesController < InheritedResources::Base
+  skip_before_action :authenticate_user!, only: [:index,:show ]
+  before_action :is_admin?, only: [:edit, :create, :new, :destroy, :update ]
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index

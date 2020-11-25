@@ -1,5 +1,5 @@
 class CartItemsController < InheritedResources::Base
-
+  skip_before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   include CurrentCart
   before_action :set_cart, only: [:create]
   before_action :set_cart_item, only: [:show, :edit, :update, :destroy]

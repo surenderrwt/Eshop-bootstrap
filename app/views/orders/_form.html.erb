@@ -26,6 +26,13 @@
     <%= form.text_field :phone %>
   </div>
 
+  <% if current_admin_user %>
+    <div class="field">
+      <%= form.label :order_status %>
+      <%= form.select :order_status, Order.order_states.keys, prompt: 'Choose a Order Status' %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= form.submit %>
   </div>

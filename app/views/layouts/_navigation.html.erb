@@ -10,7 +10,14 @@
         </div>
 
         <div class=" my-2">
-            <%= link_to ('<i class="fa fa-shopping-basket"></i>').html_safe, cart_items_path %>
+            <% if current_user %>
+                <%= link_to "Log out", destroy_user_session_path, method: "delete" %> |
+                <% link_to "Log out Admin", destroy_admin_user_session_path, method: "delete" %>
+            <% else %>
+                <%= link_to 'Sign in', new_user_session_path %>
+                <%= link_to 'Register', new_user_registration_path %>
+            <% end %>
+            <%= link_to ('<i class="fa fa-shopping-basket"></i>').html_safe, cart_path(@cart) %>
              <% # link_to text_with_badge('<i class="fa fa-shopping-basket"></i>', @cart.cart_items.count), cart_items_path, class: 'btn btn-primary', data: {toggle: :tab} %>
         </div>
     </div>
