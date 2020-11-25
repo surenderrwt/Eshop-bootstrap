@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
     belongs_to :category
-    has_many :line_items
+    has_many :cart_items
     before_destroy :ensure_not_referenced_by_any_cart_item
 
     private

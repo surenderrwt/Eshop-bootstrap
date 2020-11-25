@@ -21,9 +21,6 @@ ActiveAdmin.register Product do
       f.input :image
       f.input :available, :as => :radio
     end
-
-
-
     f.actions
   end
   permit_params :category_id, :name, :count, :small_desc, :description, :price, :available, :image

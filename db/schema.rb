@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_195036) do
+ActiveRecord::Schema.define(version: 2020_11_25_053448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,9 @@ ActiveRecord::Schema.define(version: 2020_11_24_195036) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "quantity", default: 1
+    t.bigint "order_id"
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["order_id"], name: "index_cart_items_on_order_id"
     t.index ["product_id"], name: "index_cart_items_on_product_id"
   end
 
@@ -61,8 +63,14 @@ ActiveRecord::Schema.define(version: 2020_11_24_195036) do
     t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "{:null=>false, :foreign_key=>true}_id"
-    t.index ["{:null=>false, :foreign_key=>true}_id"], name: "index_categories_on_{:null=>false, :foreign_key=>true}_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "full_name"
+    t.text "shipping_address"
+    t.decimal "phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -75,7 +83,8 @@ ActiveRecord::Schema.define(version: 2020_11_24_195036) do
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "category_id"
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["name"], name: "index_products_on_name"
   end
 
@@ -92,5 +101,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_195036) do
   end
 
   add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "orders"
   add_foreign_key "cart_items", "products"
+  add_foreign_key "products", "categories"
 end
