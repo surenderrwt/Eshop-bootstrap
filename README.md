@@ -1,53 +1,53 @@
 # Eshop-Bootstrap
-Bootstrap based Ecommerce portal where users can purchase Electronic Soft Items (PDFs, PNGs, JPGs, Docs ) 
+Bootstrap based Ecommerce portal where users can purchase Electronic Soft Items (PDFs, PNGs, JPGs, Docs ) based in Rails 6
 
 # Database > PostgreSQL
-gem 'pg', '>= 0.18', '< 2.0'
+* gem 'pg', '>= 0.18', '< 2.0'
 
 # Admin Login Details
-admin@example.com
-password
+* admin@example.com
+* password
   
 # Resources
-User
-Category
-Product
+* User
+* Category
+* Product
 
 # Additional Gems
-gem 'activeadmin'
-gem 'devise'
-gem 'rspec-rails'
-gem 'capybara'
-gem 'shoulda-matchers'
-gem 'database_cleaner'
-gem 'factory_girl_rails'
+* gem 'activeadmin'
+* gem 'devise'
+* gem 'rspec-rails'
+* gem 'capybara'
+* gem 'shoulda-matchers'
+* gem 'database_cleaner'
+* gem 'factory_girl_rails'
 
-  
+# Database Structure
+ ![alt text](https://github.com/surenderrwt/Eshop-bootstrap/blob/master/Database_scheme.png?raw=true)
+
 # Special commands
+* rails g active_admin:install
+* rails db:migrate
+* rails db:seed
+* rails server
+* rails generate active_admin:resource User
+* rails generate active_admin:resource Category
+* rails generate active_admin:resource Product
+* rails generate active_admin:resource Order
+* rails generate devise User
+* rails db:migrate
 
-
-
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Special Commands for Git
+* git init
+* git status
+* git branch
+* git remote add origin https://github.com/user/repo.git
+* git checkout -b branch_name
+* git staus
+* git add .
+* git commit -am "Some comment"
+* git push --set-upstream origin branch_name
+* git checkout master
+* git merge branch_name
+* git push origin master
+* git status

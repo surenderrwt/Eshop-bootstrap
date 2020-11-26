@@ -14,7 +14,6 @@ class ProductsController < InheritedResources::Base
       format.js 
     end
   end
-  
 
   def show
   end
