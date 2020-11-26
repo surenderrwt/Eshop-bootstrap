@@ -1,7 +1,6 @@
 class CartItemsController < InheritedResources::Base
+  before_action :admin_only, only: [:index]
   skip_before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  include CurrentCart
-  before_action :set_cart, only: [:create]
   before_action :set_cart_item, only: [:show, :edit, :update, :destroy]
 
   # GET /cart_items
@@ -74,6 +73,12 @@ class CartItemsController < InheritedResources::Base
     # Use callbacks to share common setup or constraints between actions.
     def set_cart_item
       @cart_item = CartItem.find(params[:id])
+    end
+
+    def admin_only
+      unless current_admin_user
+        redirect_to root_path, :notice => "Not authorized to access all orders"
+      end
     end
 
     def cart_item_params

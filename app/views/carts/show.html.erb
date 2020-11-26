@@ -1,21 +1,28 @@
-<p id="notice"><%= notice %></p>
-<h2>Your Cart</h2>
+<div class="container mt">
+    <p id="notice"><%= notice %></p>
+    <h2>Your Cart</h2>
+</div>
 
-<table>
-    <% @cart.cart_items.each do |item| %>
-    <tr>
-        <td><%= item.quantity %>&times;</td>
-        <td><%= item.product.name %></td>
-        <td class="item_price"><%= number_to_currency(item.product.price) %></td>
-    </tr>
+<div class="container mt">
+    <table>
+        <tr> <td> <h3>Quantity</h3></td> <td> <h3>Name </h3></td><td><h3> Price</h3></td> <td><h3>Actions</h3></td></tr>
+        <% @cart.cart_items.each do |item| %>
+            <tr>
+                <td><%= item.quantity %>&times;</td>
+                <td><%= item.product.name %></td>
+                <td class="item_price"><%= number_to_currency(item.product.price) %></td>
+                <td> <%= button_to 'Delete', cart_item_path(id: item), method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+            </tr>
+        <% end %>
+        <tr class="total_line">
+            <td colspan="2">Total</td>
+            <td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
+        </tr>
+    </table>
+
+    <%= button_to "Place Order", new_order_path, method: :get %>
+    <% if current_admin_user %>
+        <%= button_to 'Empty cart', @cart, method: :delete, data: { confirm: 'Are you sure?' } %> |
     <% end %>
-    <tr class="total_line">
-        <td colspan="2">Total</td>
-        <td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
-    </tr>
-</table>
+</div>
 
-<%= button_to "Place Order", new_order_path, method: :get %>
-<% if current_admin_user %>
-    <%= button_to 'Empty cart', @cart, method: :delete, data: { confirm: 'Are you sure?' } %> |
- <% end %>

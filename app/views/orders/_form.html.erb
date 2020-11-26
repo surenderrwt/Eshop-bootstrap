@@ -11,29 +11,41 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :full_name %>
-    <%= form.text_field :full_name %>
+  <div class="form-group row">
+      <%= form.label :full_name, class:"col-sm-2 col-form-label" %>
+      <div class="col-sm-10">
+        <%= form.text_field :full_name, class:"form-control" %>
+      </div>
+  </div>
+  
+  <div class="form-group row">
+    <%= form.label :shipping_address, class:"col-sm-2 col-form-label" %>
+    <div class="col-sm-8">
+      <%= form.text_area :shipping_address, class:"form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :shipping_address %>
-    <%= form.text_area :shipping_address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
+  <div class="form-group row">
+    <%= form.label :phone, class:"col-sm-2 col-form-label" %>
+    <div class="col-sm-8">
+      <%= form.text_area :phone, class:"form-control" %>
+    </div>
   </div>
 
   <% if current_admin_user %>
-    <div class="field">
-      <%= form.label :order_status %>
-      <%= form.select :order_status, Order.order_states.keys, prompt: 'Choose a Order Status' %>
+  <div class="form-group row">
+    <%= form.label :order_status, class:"col-sm-2 col-form-label" %>
+    <div class="col-sm-8">
+      <%= form.text_area :order_status, class:"form-control" %>
     </div>
+  </div>
   <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
+  
+  <div class="form-group row">  
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-8">
+      <%= form.submit class:"btn btn-primary" %>
+    </div>
   </div>
 <% end %>

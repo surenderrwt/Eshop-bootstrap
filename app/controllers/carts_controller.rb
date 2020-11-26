@@ -1,6 +1,6 @@
 class CartsController < InheritedResources::Base
-  skip_before_action :authenticate_user!, only: [:show, :new, :create, :edit, :update]
-  before_action :is_admin?, only: [:index]
+  # skip_before_action :authenticate_user!, only: [:show, :new, :create, :edit, :update]
+  before_action :admin_only, only: [:index]
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, :with => :invalid_cart
 
@@ -76,6 +76,12 @@ class CartsController < InheritedResources::Base
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
       @cart = Cart.find(params[:id])
+    end
+
+    def admin_only
+      unless current_admin_user
+        redirect_to root_path, :notice => "Not authorized to access all orders"
+      end
     end
 
     def cart_params

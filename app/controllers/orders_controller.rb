@@ -1,4 +1,5 @@
 class OrdersController < InheritedResources::Base
+  before_action :admin_only, except: [:show, :new, :create]
   include CurrentCart
   before_action :set_cart
   before_action :set_order, only: [:show, :edit, :update, :destroy]
@@ -71,6 +72,12 @@ class OrdersController < InheritedResources::Base
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = current_user.orders.find(params[:id])
+    end
+
+    def admin_only
+      unless current_admin_user
+        redirect_to root_path, :notice => "Not authorized to access all orders"
+      end
     end
   
     def ensure_cart_isnt_empty

@@ -4,7 +4,12 @@
 $white: white;
 $black: black;
 $default_color: #1f38c5;
-
+ .mt    {
+        margin-top: 50px !important;
+ }
+ .btn.btn-primary {
+        width: 100%; 
+}
 .navbar {
         margin-bottom: 0;
         background: $default_color;
@@ -68,4 +73,7 @@ caption {
                 font-size: 26px;
                 line-height: 124%;
         }
+}
+.totalline     {
+
 }

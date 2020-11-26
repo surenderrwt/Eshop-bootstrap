@@ -1,0 +1,24 @@
+<div class="container mt">
+<h1>Your Orders</h1>
+</div>
+<hr>
+<div class="container mt">
+<% @orders.each do |order| %>
+    <div class="col-lg-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                Order: <%= order.id %>, Status:  <% if order.order_status %>
+                                                    <%= Order.order_states.key(order.order_status) %>
+                                                <%  else %>
+                                                    "In Queue"
+                                                <% end %>
+                                            
+            </div>
+            <div class="card-body">
+                User Name: <h5 class="card-title"><%= order.full_name %></h5>
+                Shipping Address: <p class="card-text"><%= order.shipping_address %></p>
+            </div>
+        </div>    
+    </div>
+<% end %>
+</div>

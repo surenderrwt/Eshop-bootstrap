@@ -7,6 +7,10 @@ Bootstrap based Ecommerce portal where users can purchase Electronic Soft Items 
 # Admin Login Details
 * admin@example.com
 * password
+
+# User Login Details
+* user@example.com
+* password
   
 # Resources
 * User
@@ -36,6 +40,7 @@ Bootstrap based Ecommerce portal where users can purchase Electronic Soft Items 
 * rails generate active_admin:resource Order
 * rails generate devise User
 * rails db:migrate
+* rails generate devise:views 
 
 # Special Commands for Git
 * git init

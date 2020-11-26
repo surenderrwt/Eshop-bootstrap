@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :products
   get "/by_category" => 'products#by_category', as: 'by_category'  
-
+  get '/dashboard' => 'dashboard#show', as: 'dashboard'
 end
