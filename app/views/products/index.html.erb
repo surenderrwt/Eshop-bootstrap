@@ -5,19 +5,16 @@
 <div class="jumbotron1 jumbotron-fluid">
   <div class="container">
     <div class="row">
-        <% @products.each do |product| %>
-            <div class="col-lg-4">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="<%= asset_path( 'download.svg' ) %>" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= product.name %></h5>
-                        <p class="card-text"><%= product.small_desc %></p>
-                        <%= button_to 'Add To Cart', cart_items_path(product_id: product), class:'btn btn-info' %>
-                        <%= link_to 'View Detail', product_path(product), class:'btn btn-success' %>
-                    </div>
-                </div>    
+        <div class="col-md-2">
+        <% @categories.each do | category | %>
+            <%= link_to category.name, by_category_path(:category_id => category.id), :remote => true %></br>
+            <% end %>
+        </div>
+        <div class="col-md-10">
+            <div id="products_grid">
+                <%= render partial: 'products_list', locals: { products: @products } %>
             </div>
-        <% end %>
+        </div>
     </div>
   </div>
 </div>

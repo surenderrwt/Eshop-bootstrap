@@ -4,7 +4,17 @@ class ProductsController < InheritedResources::Base
 
   def index
     @products = Product.all
+    @categories = Category.all
   end
+
+  def by_category
+    category = Category.find(params[:category_id])
+    @cat_products = category.products
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
 
   def show
   end
