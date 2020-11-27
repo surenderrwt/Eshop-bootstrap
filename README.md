@@ -41,6 +41,7 @@ Bootstrap based Ecommerce portal where users can purchase Electronic Soft Items 
 * rails generate devise User
 * rails db:migrate
 * rails generate devise:views 
+* rails generate rspec:install
 
 # Special Commands for Git
 * git init
